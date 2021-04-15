@@ -1,0 +1,32 @@
+[
+  {
+    "name": "login",
+    "path": "/login",
+    "component": "D:\\\\PAULOGUERRAF\\\\web\\\\strapi\\\\remoteexhibit\\\\frontend-nuxt\\\\pages\\\\login.vue",
+    "chunkName": "pages/login"
+  },
+  {
+    "name": "profile",
+    "path": "/profile",
+    "component": "D:\\\\PAULOGUERRAF\\\\web\\\\strapi\\\\remoteexhibit\\\\frontend-nuxt\\\\pages\\\\profile.vue",
+    "chunkName": "pages/profile"
+  },
+  {
+    "name": "register",
+    "path": "/register",
+    "component": "D:\\\\PAULOGUERRAF\\\\web\\\\strapi\\\\remoteexhibit\\\\frontend-nuxt\\\\pages\\\\register.vue",
+    "chunkName": "pages/register"
+  },
+  {
+    "name": "upload",
+    "path": "/upload",
+    "component": "D:\\\\PAULOGUERRAF\\\\web\\\\strapi\\\\remoteexhibit\\\\frontend-nuxt\\\\pages\\\\upload.vue",
+    "chunkName": "pages/upload"
+  },
+  {
+    "name": "index",
+    "path": "/",
+    "component": "D:\\\\PAULOGUERRAF\\\\web\\\\strapi\\\\remoteexhibit\\\\frontend-nuxt\\\\pages\\\\index.vue",
+    "chunkName": "pages/index"
+  }
+]
