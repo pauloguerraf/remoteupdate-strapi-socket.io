@@ -31,12 +31,16 @@
             <label for="file">Imagen</label>
             <input align="right" class="my-2" type="file" name="image" />
           </div>
+          <!-- <progress max="100" :value.prop="uploadPercentage"></progress> -->
           <div class="my-4 flex flex-col w-full">
-            <input
-              class="px-4 py-2 border-2 border-black hover:text-black hover:bg-white bg-black text-white"
+            <button
+              ref="submitButton"
+              class="px-4 py-2 border-2 border-black hover:text-black hover:bg-white bg-black text-white disabled:border-gray-200 disabled:bg-gray-200 disabled:text-gray-500 my-1 cursor-hover disabled:cursor-not-allowed"
               type="submit"
               name="Submit"
-            />
+            >
+              Update
+            </button>
           </div>
         </form>
       </div>
@@ -55,6 +59,7 @@ export default {
         name: '',
         image: '',
       },
+      // uploadPercentage: 0,
     }
   },
   computed: {
@@ -68,19 +73,16 @@ export default {
       try {
         await this.$axios
           .get('http://localhost:1337/background')
-          .onUploadProgress((progress) => {
-            console.log(progress)
-          })
           .then((res) => {
             this.expoContent.name = res.data.name
             this.expoContent.image = res.data.image
-            console.log(res.data.image)
           })
       } catch (e) {
         console.log('there was an error uploading', e)
       }
     },
     async sendToStrapi() {
+      this.$refs.submitButton.disabled = true
       const form = this.$refs.uploadForm
       const formData = new FormData()
       const formElements = form.elements
@@ -104,14 +106,22 @@ export default {
       // }
       try {
         await this.$axios
-          .put('http://localhost:1337/background', formData)
+          .put('http://localhost:1337/background', formData, {
+            // onUploadProgress: (progressEvent) => {
+            //   this.uploadPercentage = parseInt(
+            //     Math.round((progressEvent.loaded / progressEvent.total) * 100)
+            //   )
+            // },
+          })
           .then((res) => {
             console.log('success')
             form.reset()
-            window.location.reload(true)
+            this.$refs.submitButton.disabled = false
+            this.getBackgrounds()
           })
       } catch (e) {
         console.log('there was an error uploading', e)
+        this.$refs.submitButton.disabled = true
       }
     },
   },
